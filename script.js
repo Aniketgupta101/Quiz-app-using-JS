@@ -44,9 +44,9 @@ const questions = [
 let index = 0;
 let total = questions.length;
 let right = 0,
-  wrong = 0;
+    wrong = 0;
 const quesbox = document.getElementById("quesbox")
-const optioninputs = document.queryselector.All('.option')
+const optioninputs = document.querySelectorAll('.option')
 const loadQuestion = () => {
   if (index === total) {
     return endquiz()
@@ -55,10 +55,10 @@ const loadQuestion = () => {
   const data = questions[index]
   console.log(data)
   quesbox.innertext = `${index+1}) ${data.que}`;
-  optioninputs[0].getElementSibling.innertext = data.a;
-  optioninputs[1].getElementSibling.innertext = data.b;
-  optioninputs[2].getElementSibling.innertext = data.c;
-  optioninputs[3].getElementSibling.innertext = data.d;
+  optioninputs[0].nextElementSibling.innertext = data.a;
+  optioninputs[1].nextElementSibling.innertext = data.b;
+  optioninputs[2].nextElementSibling.innertext = data.c;
+  optioninputs[3].nextElementSibling.innertext = data.d;
 }
 
 const submitQuiz = () => {
