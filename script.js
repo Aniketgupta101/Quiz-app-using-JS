@@ -44,53 +44,62 @@ const questions = [
 let index = 0;
 let total = questions.length;
 let right = 0,
-    wrong = 0;
+  wrong = 0;
 const quesbox = document.getElementById("quesbox")
-const optioninputs = document.querySelectorAll('.option')
-const loadQuestion = () => {
-  if (index === total) {
-    return endquiz()
+const optionInputs = document.querySelectorAll(".option")
+const LoadQuestion = () => {
+  if(index ===total){
+    return endQuiz()
   }
-  reset();
+  resetoptions();
   const data = questions[index]
   console.log(data)
-  quesbox.innertext = `${index+1}) ${data.que}`;
-  optioninputs[0].nextElementSibling.innertext = data.a;
-  optioninputs[1].nextElementSibling.innertext = data.b;
-  optioninputs[2].nextElementSibling.innertext = data.c;
-  optioninputs[3].nextElementSibling.innertext = data.d;
+  quesbox.innerText = `${index + 1}) ${data.que}`;
+  optionInputs[0].nextElementSibling.innerText = data.a;
+  optionInputs[1].nextElementSibling.innerText = data.b;
+  optionInputs[2].nextElementSibling.innerText = data.c;
+  optionInputs[3].nextElementSibling.innerText = data.d;
 }
 
 const submitQuiz = () => {
   const data = questions[index];
   const ans = getAnswer()
-  if (answer === data.correct) {
-    right++;
-  } else {
-    wrong++;
-  }
-  index++;
-  loadQuestion();
-  return;
+  if (ans === data.correct) {
+      right++;
+    } else {
+      wrong++;
+    }
+    index++;
+    LoadQuestion();
+    return;
 }
 
 const getAnswer = () => {
-  optioninputs.forEach(
+  let answer;
+  optionInputs.forEach(
     (input) => {
       if (input.checked) {
-        return input.value;
+        answer = input.value;
       }
     }
   )
+  return answer;
 }
 
-const reset = () => {
-  optioninputs.forEach(
+const resetoptions = () => {
+  optionInputs.forEach(
     (input) => {
-      input.checked = false;
+input.checked = false
     }
   )
 }
 
-//inital call 
-loadQuestion();
+const endQuiz = () => {
+  document.getElementById("box").innerHTML =`
+  <h3> Thank you for playing the Quiz</h3>
+  <h2>${right} / ${total} are correct </h2>
+  `
+}
+
+//initial call
+LoadQuestion();
